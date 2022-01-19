@@ -1,5 +1,5 @@
 # react-practice
 
 
-##learning journey
+## learning journey
 React: https://zh-hant.reactjs.org/docs/getting-started.html

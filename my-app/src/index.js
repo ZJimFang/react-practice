@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
+
 import './index.css';
 
 //========================== element ==========================//
@@ -594,31 +595,62 @@ import './index.css';
 // )
 
 //========================== Composition vs 繼承 ==========================//
-function FancyBorder(props) {
+// function FancyBorder(props) {
+//   return (
+//     <div className={'FancyBorder FancyBorder-' + props.color}>
+//       {props.children}
+//     </div>
+//   );
+// }
+
+// function WelcomeDialog() {
+//   return (
+//     <FancyBorder color="blue">
+//       <h1 className="Dialog-title">
+//         Welcome
+//       </h1>
+//       <p className="Dialog-message">
+//         Thank you for visiting our spacecraft!
+//       </p>
+//       <p className="Dialog-message">
+//         Thank you
+//       </p>
+//     </FancyBorder>
+//   );
+// }
+
+// ReactDOM.render(
+//   <WelcomeDialog />,
+//   document.querySelector('#root')
+// )
+
+//========================== Hook ==========================//
+function Example() {
+  // 我們宣告了一個叫做 count 的 state 變數，並將起始值設成了 0。
+  // React 在 re-render 間會記住目前的值，並將它提供給我們的 function。
+  // 如果我們需要更新目前的 count，我們可以呼叫 setCount。
+  const [count, setCount] = useState(0);
+  // 相似於 componentDidMount 和 componentDidUpdate:
+  useEffect(() => {
+    // 使用瀏覽器 API 更新文件標題
+    document.title = `You clicked ${count} times`;
+  });
   return (
-    <div className={'FancyBorder FancyBorder-' + props.color}>
-      {props.children}
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => {
+        // setCount(count + 1);
+        // setCount(count + 1);
+        setCount(prev => prev + 1);
+        setCount(prev => prev + 1);
+      }
+      }>
+        Click me
+      </button>
     </div>
   );
 }
-
-function WelcomeDialog() {
-  return (
-    <FancyBorder color="blue">
-      <h1 className="Dialog-title">
-        Welcome
-      </h1>
-      <p className="Dialog-message">
-        Thank you for visiting our spacecraft!
-      </p>
-      <p className="Dialog-message">
-        Thank you
-      </p>
-    </FancyBorder>
-  );
-}
-
 ReactDOM.render(
-  <WelcomeDialog />,
+  <Example />,
   document.querySelector('#root')
 )
